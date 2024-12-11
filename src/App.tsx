@@ -7,6 +7,10 @@ import styled from "styled-components";
 import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
+import { useNavigate } from 'react-router-dom';
+import { Game } from "./components/Game";
+import { ScoreBoard } from "./components/ScoreBoard";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import "@twa-dev/sdk";
 
 const StyledApp = styled.div`
@@ -27,6 +31,20 @@ const AppContainer = styled.div`
 `;
 
 function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Game />} />
+          <Route path="/game" element={<ScoreBoard />} />
+          <Route path="/wallet" element={<Wallet />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+function Wallet() {
   const { network } = useTonConnect();
 
   return (
